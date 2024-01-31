@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './database/config.js';
 import Crash from './database/Models/Crashes.js';
+import compression from 'compression';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +14,8 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Middleware for compressing responses
+app.use(compression());
 // Middleware for handling CORS Policy
 app.use(cors());
 // Middleware for parsing request body
