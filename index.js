@@ -14,8 +14,8 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Middleware for compressing responses
-app.use(compression());
+// Middleware for compressing responses file size
+app.use(compression(9));
 // Middleware for handling CORS Policy
 app.use(cors());
 // Middleware for parsing request body
@@ -28,7 +28,6 @@ app.get('/api', async (req, res) => {
         $in: [1, 2],
       },
     }).select('-_id');
-    console.log('someone made a call to the crashes endpoint');
     res.json(results);
   } catch (error) {
     console.error('Error connecting to the database:', error);
